@@ -1,0 +1,25 @@
+class Solution {                   // here the tc and sc is same as bfs traversal i.e o(n) and o(n) + o(2E) respectively and o(e)+ o(n) for 
+    private:                         directed graph
+       void dfs(int node, vector<int> adj[], int vis[], vector<int> &ls){
+           vis[node]=1;
+           ls.push_back(node);
+           // traverse all its neighbors
+           for(auto it: adj[node]){
+               if(!vis[it]){
+                   dfs(it,adj,vis,ls);
+               }
+           }
+       }
+  public:
+    // Function to return a list containing the DFS traversal of the graph.
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        // Code here
+        int vis[V]={0};   
+        int start=0;
+        vector<int> ls; // it creates a list
+        dfs(start,adj,vis,ls);
+        return ls;
+        
+    }
+};
+ 
