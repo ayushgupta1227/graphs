@@ -1,0 +1,22 @@
+  vector<int> bfsOfGraph(int V, vector<int> adj[]) {  // the tc is O(3N) and sc is O(n) + O(2E)  where n is for queue and 2E is for degrees(for all nodes)
+        // Code here
+        int vis[V]={0};   
+        vis[0]=1; // starting node
+        queue<int>q;
+        q.push(0);
+        vector<int>bfs;
+        while(!q.empty()){
+            int node=q.front();
+            q.pop();   // pop the element in the queue
+            bfs.push_back(node);
+            
+            for(auto it: adj[node]){
+                if(!vis[it]){
+                    vis[it]=1;
+                    q.push(it);
+                }
+            }
+        }
+        return bfs;
+    }
+};
