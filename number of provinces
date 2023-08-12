@@ -1,0 +1,32 @@
+class Solution {    // here the tc is o(n) and sc is o(2n)   // here we can use both dfs and bfs traversals.
+public:
+void soln(vector<int>adj[],int node,vector<bool>&vis){
+    vis[node] = 1;
+    for(auto i:adj[node]){
+        if(!vis[i]){
+            soln(adj,i,vis);
+        }
+    }
+}
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int n = isConnected.size();
+        vector<int>adj[n];
+        for(int i = 0;i<n;i++){
+            for(int j = 0;j<n;j++){
+                if(isConnected[i][j]){
+                adj[i].push_back(j);
+                adj[j].push_back(i);
+                }
+            }
+        }
+        vector<bool>vis(n,0);
+        int ans= 0; // it resembles the counter variable
+        for(int i = 0;i<n;i++){
+            if(!vis[i]){
+                soln(adj,i,vis); // dfs traversal
+                ans++; // counter to count the number of provinces
+            }
+        }
+        return ans;
+    }
+};
